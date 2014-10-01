@@ -26,20 +26,11 @@ public class TicTacToeGame {
 
         int i=0;
 
-        printStream.print(" "+board[i]+" ");
-        printStream.print("|");
-        printStream.print(" "+board[i+1]+" ");
-        printStream.print("|");
-        printStream.print(" "+board[i+2]+" ");
+        printStream.println(" "+board[i]+" | "+board[i+1]+" | "+board[i+2]+" ");
+
         i=3;
         while(i <9) {
-            printStream.println("\n--------");
-            printStream.print(" "+board[i]+" ");
-            printStream.print("|");
-            printStream.print(" "+board[i+1]+" ");
-            printStream.print("|");
-            printStream.print(" "+board[i+2]+" ");
-
+            printStream.println("--------\n "+board[i]+" | "+board[i+1]+" | "+board[i+2]+" ");
             i+=3;
 
         }
@@ -47,9 +38,15 @@ public class TicTacToeGame {
 
     public void movePlayer() throws IOException {
         printStream.println("Enter the number of the player you wish to move");
-        String playerNumber = bufferedReader.readLine();
+        int playerNumber = Integer.parseInt(bufferedReader.readLine());
         printStream.println("Enter the square number you would like to occupy");
-        String squareNumber = bufferedReader.readLine();
+        int squareNumber = Integer.parseInt(bufferedReader.readLine());
+        String token="";
+        if(playerNumber==1) {
+            token = "X";
+        }
+        board[squareNumber-1]= token;
+        drawBoard();
 
     }
 

@@ -25,16 +25,21 @@ public class TicTacToeGameTest {
     @Test
     public void shouldPrintBoard() throws Exception {
         game.drawBoard();
-        verify(printStream,times(2)).println("  |  |\n--------");
-        verify(printStream).println("  |  |");
+        verify(printStream).println("  |  |  ");
+        verify(printStream,times(2)).println("--------\n  |  |  ");
     }
 
     @Test
     public void shouldPrintXinFirstSquareWhenUserMovesPlayerOneToSquareOne() throws IOException {
 
+
+        when(bufferedReader.readLine()).thenReturn("1");
+        when(bufferedReader.readLine()).thenReturn("1");
+
         game.movePlayer();
-        when(bufferedReader.readLine()).thenReturn("1");
-        when(bufferedReader.readLine()).thenReturn("1");
-        verify(printStream).println(" X |  |\n--------");
+
+        verify(printStream).println(" X |  |  \n");
+        verify(printStream,times(2)).println("--------\n  |  |  ");
+
     }
 }
