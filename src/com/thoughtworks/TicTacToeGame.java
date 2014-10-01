@@ -1,5 +1,7 @@
 package com.thoughtworks;
 
+import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.PrintStream;
 
 import static org.mockito.Mockito.verify;
@@ -10,15 +12,45 @@ import static org.mockito.Mockito.verify;
 public class TicTacToeGame {
 
     private PrintStream printStream;
+    private BufferedReader bufferedReader;
+    private String [] board;
 
-    public TicTacToeGame(PrintStream printStream) {
+    public TicTacToeGame(PrintStream printStream, BufferedReader bufferedReader) {
 
         this.printStream = printStream;
+        this.bufferedReader = bufferedReader;
+        board = new String[]{"","","","","","","","",""};
     }
 
     public void drawBoard() {
-        printStream.println("  |  |\n--------");
-        printStream.println("  |  |\n--------");
-        printStream.println("  |  |");
+
+        int i=0;
+
+        printStream.print(" "+board[i]+" ");
+        printStream.print("|");
+        printStream.print(" "+board[i+1]+" ");
+        printStream.print("|");
+        printStream.print(" "+board[i+2]+" ");
+        i=3;
+        while(i <9) {
+            printStream.println("\n--------");
+            printStream.print(" "+board[i]+" ");
+            printStream.print("|");
+            printStream.print(" "+board[i+1]+" ");
+            printStream.print("|");
+            printStream.print(" "+board[i+2]+" ");
+
+            i+=3;
+
+        }
     }
+
+    public void movePlayer() throws IOException {
+        printStream.println("Enter the number of the player you wish to move");
+        String playerNumber = bufferedReader.readLine();
+        printStream.println("Enter the square number you would like to occupy");
+        String squareNumber = bufferedReader.readLine();
+
+    }
+
 }
